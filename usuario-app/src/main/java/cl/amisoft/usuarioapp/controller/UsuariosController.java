@@ -2,7 +2,7 @@ package cl.amisoft.usuarioapp.controller;
 import java.util.List;
 
 import cl.amisoft.usuarioapp.service.UsuariosService;
-import cl.amisoft.usuarioapp.vo.ToUsuariosVo;
+import cl.amisoft.usuarioapp.vo.UsuariosVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,24 +26,25 @@ public class UsuariosController {
         this.usuariosService = usuariosService;
     }
     @GetMapping(value = "/{ccrUsuario}", produces = "application/json")
-    public ToUsuariosVo getByCcrUsuario(@PathVariable(name = "ccrUsuario") Long ccrUsuario){
+    public UsuariosVo getByCcrUsuario(@PathVariable(name = "ccrUsuario") Long ccrUsuario){
         return usuariosService.obtener(ccrUsuario);
     }
     @GetMapping()
-    public List<ToUsuariosVo> getAll() {
+    public List<UsuariosVo> getAll() {
         return usuariosService.listar();
     }
     @PostMapping()
-    public ToUsuariosVo addUsuario(@RequestBody ToUsuariosVo toUsuariosVo){
-        return usuariosService.agregar(toUsuariosVo);
+    public UsuariosVo addUsuario(@RequestBody UsuariosVo usuariosVo){
+        System.out.println(usuariosVo.getRut());
+        return usuariosService.agregar(usuariosVo);
     }
-    @PutMapping()
-    public ToUsuariosVo updateUsuario(@PathVariable Long ccrUsuario, @RequestBody ToUsuariosVo toUsuariosVo){
-        return usuariosService.editar(ccrUsuario,toUsuariosVo);
+    @PutMapping(value = "/{ccrUsuario}")
+    public UsuariosVo updateUsuario(@PathVariable Long ccrUsuario, @RequestBody UsuariosVo usuariosVo){
+        return usuariosService.editar(ccrUsuario, usuariosVo);
     }
 
-    @DeleteMapping()
-    public ToUsuariosVo deleteUsuario(@PathVariable Long ccrUsuario){
+    @DeleteMapping(value = "/{ccrUsuario}")
+    public UsuariosVo deleteUsuario(@PathVariable Long ccrUsuario){
         return usuariosService.eliminar(ccrUsuario);
     }
 }

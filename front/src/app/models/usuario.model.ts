@@ -10,7 +10,7 @@ export class Usuario {
     glsConcepto?: string;
     fecConcepto?: Date;
     codConcepto?: number;
-    rut?: string;
+    rut?: number;
     rutDiv?: string;
     constructor(obj?: any) {
         this.ccrUsuario = obj && obj.ccrUsuario || null;

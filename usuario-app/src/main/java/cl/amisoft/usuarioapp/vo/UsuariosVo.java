@@ -3,7 +3,7 @@ package cl.amisoft.usuarioapp.vo;
 
 import java.time.LocalDate;
 
-public class ToUsuariosVo {
+public class UsuariosVo {
     private long ccrUsuario;
     private long codUsuarioCrea;
     private long codUsuarioMod;
@@ -15,7 +15,7 @@ public class ToUsuariosVo {
     private String glsConcepto;
     private LocalDate fecConcepto;
     private Long codConcepto;
-    private String rut;
+    private Long rut;
     private String rutDiv;
 
     public long getCcrUsuario() {
@@ -106,11 +106,11 @@ public class ToUsuariosVo {
         this.codConcepto = codConcepto;
     }
 
-    public String getRut() {
+    public Long getRut() {
         return rut;
     }
 
-    public void setRut(String rut) {
+    public void setRut(Long rut) {
         this.rut = rut;
     }
 
@@ -122,9 +122,9 @@ public class ToUsuariosVo {
         this.rutDiv = rutDiv;
     }
 
-    public ToUsuariosVo() {
+    public UsuariosVo() {
     }
-    public ToUsuariosVo(Builder builder){
+    public UsuariosVo(Builder builder){
         this.ccrUsuario = builder.ccrUsuario;
         this.codUsuarioCrea = builder.codUsuarioCrea;
         this.codUsuarioMod = builder.codUsuarioMod;
@@ -152,7 +152,7 @@ public class ToUsuariosVo {
         private String glsConcepto;
         private LocalDate fecConcepto;
         private Long codConcepto;
-        private String rut;
+        private Long rut;
         private String rutDiv;
 
         public Builder ccrUsuario(long ccrUsuario) {
@@ -210,7 +210,7 @@ public class ToUsuariosVo {
             return this;
         }
 
-        public Builder rut(String rut) {
+        public Builder rut(Long rut) {
             this.rut = rut;
             return this;
         }
@@ -219,8 +219,8 @@ public class ToUsuariosVo {
             this.rutDiv = rutDiv;
             return this;
         }
-        public ToUsuariosVo build(){
-            return new ToUsuariosVo(this);
+        public UsuariosVo build(){
+            return new UsuariosVo(this);
         }
     }
 }

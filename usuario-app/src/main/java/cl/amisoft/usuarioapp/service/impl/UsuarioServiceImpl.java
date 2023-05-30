@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import cl.amisoft.usuarioapp.vo.ToUsuariosVo;
+import cl.amisoft.usuarioapp.vo.UsuariosVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +23,10 @@ public class UsuarioServiceImpl implements UsuariosService {
     }
 
     @Override
-    public ToUsuariosVo obtener(Long id) {
+    public UsuariosVo obtener(Long id) {
         Optional<Usuarios> usuarios = usuariosDao.obtenerUsuario(id);
         if (usuarios.isPresent()) {
-            return new ToUsuariosVo.Builder()
+            return new UsuariosVo.Builder()
                     .ccrUsuario(usuarios.get().getCcrUsuario())
                     .codUsuarioCrea(usuarios.get().getCodUsuarioCrea())
                     .codUsuarioMod(usuarios.get().getCodUsuarioMod())
@@ -42,13 +42,13 @@ public class UsuarioServiceImpl implements UsuariosService {
                     .rutDiv(usuarios.get().getRutDiv())
                     .build();
         }
-        return new ToUsuariosVo();
+        return new UsuariosVo();
     }
 
     @Override
-    public List<ToUsuariosVo> listar() {
+    public List<UsuariosVo> listar() {
         return usuariosDao.listar().stream()
-                .map(u -> new ToUsuariosVo.Builder()
+                .map(u -> new UsuariosVo.Builder()
                         .ccrUsuario(u.getCcrUsuario())
                         .codUsuarioCrea(u.getCodUsuarioCrea())
                         .codUsuarioMod(u.getCodUsuarioMod())
@@ -68,23 +68,23 @@ public class UsuarioServiceImpl implements UsuariosService {
 
     @Transactional
     @Override
-    public ToUsuariosVo agregar(ToUsuariosVo toUsuariosVo) {
+    public UsuariosVo agregar(UsuariosVo usuariosVo) {
         Usuarios usuario = usuariosDao.agregar(new Usuarios.Builder()
-                .ccrUsuario(toUsuariosVo.getCcrUsuario())
-                .codUsuarioCrea(toUsuariosVo.getCodUsuarioCrea())
-                .codUsuarioMod(toUsuariosVo.getCodUsuarioMod())
-                .glsFuncionarioCrea(toUsuariosVo.getGlsFuncionarioCrea())
-                .glsFuncionarioMod(toUsuariosVo.getGlsFuncionarioMod())
+                .ccrUsuario(usuariosVo.getCcrUsuario())
+                .codUsuarioCrea(usuariosVo.getCodUsuarioCrea())
+                .codUsuarioMod(usuariosVo.getCodUsuarioMod())
+                .glsFuncionarioCrea("Roy")//Usuario creador del registro
+                .glsFuncionarioMod("")//Usuario modificador del registro
                 .fecCrea(LocalDate.now())
                 .fecMod(LocalDate.now())
-                .glsUsername(toUsuariosVo.getGlsUsername())
-                .glsConcepto(toUsuariosVo.getGlsConcepto())
-                .fecConcepto(toUsuariosVo.getFecConcepto())
-                .codConcepto(toUsuariosVo.getCodConcepto())
-                .rut(toUsuariosVo.getRut())
-                .rutDiv(toUsuariosVo.getRutDiv())
+                .glsUsername(usuariosVo.getGlsUsername())
+                .glsConcepto(usuariosVo.getGlsConcepto())
+                .fecConcepto(usuariosVo.getFecConcepto())
+                .codConcepto(usuariosVo.getCodConcepto())
+                .rut(usuariosVo.getRut())
+                .rutDiv(usuariosVo.getRutDiv())
                 .build());
-        return new ToUsuariosVo.Builder()
+        return new UsuariosVo.Builder()
                 .ccrUsuario(usuario.getCcrUsuario())
                 .codUsuarioCrea(usuario.getCodUsuarioCrea())
                 .codUsuarioMod(usuario.getCodUsuarioMod())
@@ -103,11 +103,11 @@ public class UsuarioServiceImpl implements UsuariosService {
 
     @Override
     @Transactional
-    public ToUsuariosVo eliminar(Long ccrUsuario) {
+    public UsuariosVo eliminar(Long ccrUsuario) {
         Optional<Usuarios> usuario = usuariosDao.obtenerUsuario(ccrUsuario);
         if (usuario.isPresent()) {
             Usuarios usuario1 = usuariosDao.eliminar(usuario.get());
-            return new ToUsuariosVo.Builder()
+            return new UsuariosVo.Builder()
                     .ccrUsuario(usuario.get().getCcrUsuario())
                     .codUsuarioCrea(usuario.get().getCodUsuarioCrea())
                     .codUsuarioMod(usuario.get().getCodUsuarioMod())
@@ -128,23 +128,23 @@ public class UsuarioServiceImpl implements UsuariosService {
 
     @Override
     @Transactional
-    public ToUsuariosVo editar(Long ccrUsuario, ToUsuariosVo toUsuariosVo) {
+    public UsuariosVo editar(Long ccrUsuario, UsuariosVo usuariosVo) {
         Usuarios usuario =  usuariosDao.editar(new Usuarios.Builder()
-                .ccrUsuario(toUsuariosVo.getCcrUsuario())
-                .codUsuarioCrea(toUsuariosVo.getCodUsuarioCrea())
-                .codUsuarioMod(toUsuariosVo.getCodUsuarioMod())
-                .glsFuncionarioCrea(toUsuariosVo.getGlsFuncionarioCrea())
-                .glsFuncionarioMod(toUsuariosVo.getGlsFuncionarioMod())
+                .ccrUsuario(usuariosVo.getCcrUsuario())
+                .codUsuarioCrea(usuariosVo.getCodUsuarioCrea())
+                .codUsuarioMod(usuariosVo.getCodUsuarioMod())
+                .glsFuncionarioCrea(usuariosVo.getGlsFuncionarioCrea())
+                .glsFuncionarioMod("Roy")//Este es el usuario que edita
                 .fecCrea(LocalDate.now())
                 .fecMod(LocalDate.now())
-                .glsUsername(toUsuariosVo.getGlsUsername())
-                .glsConcepto(toUsuariosVo.getGlsConcepto())
-                .fecConcepto(toUsuariosVo.getFecConcepto())
-                .codConcepto(toUsuariosVo.getCodConcepto())
-                .rut(toUsuariosVo.getRut())
-                .rutDiv(toUsuariosVo.getRutDiv())
+                .glsUsername(usuariosVo.getGlsUsername())
+                .glsConcepto(usuariosVo.getGlsConcepto())
+                .fecConcepto(usuariosVo.getFecConcepto())
+                .codConcepto(usuariosVo.getCodConcepto())
+                .rut(usuariosVo.getRut())
+                .rutDiv(usuariosVo.getRutDiv())
                 .build());
-        return new ToUsuariosVo.Builder()
+        return new UsuariosVo.Builder()
                 .ccrUsuario(usuario.getCcrUsuario())
                 .codUsuarioCrea(usuario.getCodUsuarioCrea())
                 .codUsuarioMod(usuario.getCodUsuarioMod())

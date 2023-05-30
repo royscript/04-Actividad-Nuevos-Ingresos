@@ -19,7 +19,7 @@ export class UsuarioService {
     return this.http.post<Usuario>(`${this.url}usuarios`, usuario, this.httpOptions);
   }
   editar(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>(`${this.url}usuarios/${usuario.ccrUsuario}`, Usuario, this.httpOptions);
+    return this.http.put<Usuario>(`${this.url}usuarios/${usuario.ccrUsuario}`, usuario, this.httpOptions);
   }
 
   eliminar(usuario: Usuario): Observable<Usuario> {

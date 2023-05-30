@@ -31,7 +31,7 @@ public class Usuarios {
     @Column(name = "COD_CONCEPTO")
     private Long codConcepto;
     @Column(name = "RUT")
-    private String rut;
+    private Long rut;
     @Column(name = "RUT_DV")
     private String rutDiv;
 
@@ -123,11 +123,11 @@ public class Usuarios {
         this.codConcepto = codConcepto;
     }
 
-    public String getRut() {
+    public Long getRut() {
         return rut;
     }
 
-    public void setRut(String rut) {
+    public void setRut(Long rut) {
         this.rut = rut;
     }
 
@@ -169,7 +169,7 @@ public class Usuarios {
         private String glsConcepto;
         private LocalDate fecConcepto;
         private Long codConcepto;
-        private String rut;
+        private Long rut;
         private String rutDiv;
 
         public Builder ccrUsuario(long ccrUsuario) {
@@ -227,7 +227,7 @@ public class Usuarios {
             return this;
         }
 
-        public Builder rut(String rut) {
+        public Builder rut(Long rut) {
             this.rut = rut;
             return this;
         }

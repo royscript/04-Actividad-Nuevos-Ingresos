@@ -1,7 +1,15 @@
-<p>
-    <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
-      Rerender
-    </button>
-    <button (click)="redireccionar()">redireccionar</button>
-  </p>
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
+<div class="d-flex justify-content-end">
+  <button type="button" class="btn btn-primary ml-2" [routerLink]="['/usuarios/agregar']">+ Agregar</button>
+</div>
+<ng-container *ngIf="error">
+  {{error}}
+  <ngb-alert [type]="'danger'"> {{error}}</ngb-alert>
+</ng-container>
+<ng-container *ngIf="exito">
+  <ngb-alert [type]="'success'"> {{exito}}</ngb-alert>
+</ng-container>
+<ng-container *ngIf="cargando">
+  {{exito}}
+</ng-container>
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>

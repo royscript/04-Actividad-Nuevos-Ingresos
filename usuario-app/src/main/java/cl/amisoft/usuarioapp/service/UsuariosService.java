@@ -1,17 +1,17 @@
 package cl.amisoft.usuarioapp.service;
 
-import cl.amisoft.usuarioapp.vo.ToUsuariosVo;
+import cl.amisoft.usuarioapp.vo.UsuariosVo;
 
 import java.util.List;
 
 public interface UsuariosService {
-    ToUsuariosVo obtener(Long ccrUsuario);
+    UsuariosVo obtener(Long ccrUsuario);
 
-    List<ToUsuariosVo> listar();
+    List<UsuariosVo> listar();
 
-    ToUsuariosVo agregar(ToUsuariosVo toUsuariosVo);
+    UsuariosVo agregar(UsuariosVo usuariosVo);
 
-    ToUsuariosVo eliminar(Long ccrUsuario);
+    UsuariosVo eliminar(Long ccrUsuario);
 
-    ToUsuariosVo editar(Long ccrUsuario, ToUsuariosVo toUsuariosVo);
+    UsuariosVo editar(Long ccrUsuario, UsuariosVo usuariosVo);
 }
