@@ -4,7 +4,7 @@ import cl.amisoft.usuarioapp.vo.ToUsuariosVo;
 
 import java.util.List;
 
-public interface ToUsuariosService {
+public interface UsuariosService {
     ToUsuariosVo obtener(Long ccrUsuario);
 
     List<ToUsuariosVo> listar();

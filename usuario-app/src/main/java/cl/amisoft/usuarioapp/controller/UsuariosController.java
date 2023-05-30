@@ -1,7 +1,7 @@
 package cl.amisoft.usuarioapp.controller;
 import java.util.List;
 
-import cl.amisoft.usuarioapp.service.ToUsuariosService;
+import cl.amisoft.usuarioapp.service.UsuariosService;
 import cl.amisoft.usuarioapp.vo.ToUsuariosVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,31 +19,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("usuarios")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST,
         RequestMethod.DELETE, RequestMethod.PUT})
-public class ToUsuariosController {
+public class UsuariosController {
     @Autowired
-    private final ToUsuariosService toUsuariosService;
-    public ToUsuariosController(ToUsuariosService toUsuariosService) {
-        this.toUsuariosService = toUsuariosService;
+    private final UsuariosService usuariosService;
+    public UsuariosController(UsuariosService usuariosService) {
+        this.usuariosService = usuariosService;
     }
     @GetMapping(value = "/{ccrUsuario}", produces = "application/json")
     public ToUsuariosVo getByCcrUsuario(@PathVariable(name = "ccrUsuario") Long ccrUsuario){
-        return toUsuariosService.obtener(ccrUsuario);
+        return usuariosService.obtener(ccrUsuario);
     }
     @GetMapping()
     public List<ToUsuariosVo> getAll() {
-        return toUsuariosService.listar();
+        return usuariosService.listar();
     }
     @PostMapping()
     public ToUsuariosVo addUsuario(@RequestBody ToUsuariosVo toUsuariosVo){
-        return toUsuariosService.agregar(toUsuariosVo);
+        return usuariosService.agregar(toUsuariosVo);
     }
     @PutMapping()
     public ToUsuariosVo updateUsuario(@PathVariable Long ccrUsuario, @RequestBody ToUsuariosVo toUsuariosVo){
-        return toUsuariosService.editar(ccrUsuario,toUsuariosVo);
+        return usuariosService.editar(ccrUsuario,toUsuariosVo);
     }
 
     @DeleteMapping()
     public ToUsuariosVo deleteUsuario(@PathVariable Long ccrUsuario){
-        return toUsuariosService.eliminar(ccrUsuario);
+        return usuariosService.eliminar(ccrUsuario);
     }
 }

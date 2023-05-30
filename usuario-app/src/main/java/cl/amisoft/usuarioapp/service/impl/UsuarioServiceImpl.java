@@ -1,8 +1,8 @@
 package cl.amisoft.usuarioapp.service.impl;
 
-import cl.amisoft.usuarioapp.dao.ToUsuariosDao;
-import cl.amisoft.usuarioapp.models.ToUsuarios;
-import cl.amisoft.usuarioapp.service.ToUsuariosService;
+import cl.amisoft.usuarioapp.dao.UsuariosDao;
+import cl.amisoft.usuarioapp.models.Usuarios;
+import cl.amisoft.usuarioapp.service.UsuariosService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,17 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
-public class ToUsuarioServiceImpl implements ToUsuariosService {
-    private final ToUsuariosDao toUsuariosDao;
+public class UsuarioServiceImpl implements UsuariosService {
+    private final UsuariosDao usuariosDao;
 
     @Autowired
-    public ToUsuarioServiceImpl(ToUsuariosDao toUsuariosDao) {
-        this.toUsuariosDao = toUsuariosDao;
+    public UsuarioServiceImpl(UsuariosDao usuariosDao) {
+        this.usuariosDao = usuariosDao;
     }
 
     @Override
     public ToUsuariosVo obtener(Long id) {
-        Optional<ToUsuarios> usuarios = toUsuariosDao.obtenerUsuario(id);
+        Optional<Usuarios> usuarios = usuariosDao.obtenerUsuario(id);
         if (usuarios.isPresent()) {
             return new ToUsuariosVo.Builder()
                     .ccrUsuario(usuarios.get().getCcrUsuario())
@@ -47,7 +47,7 @@ public class ToUsuarioServiceImpl implements ToUsuariosService {
 
     @Override
     public List<ToUsuariosVo> listar() {
-        return toUsuariosDao.listar().stream()
+        return usuariosDao.listar().stream()
                 .map(u -> new ToUsuariosVo.Builder()
                         .ccrUsuario(u.getCcrUsuario())
                         .codUsuarioCrea(u.getCodUsuarioCrea())
@@ -69,7 +69,7 @@ public class ToUsuarioServiceImpl implements ToUsuariosService {
     @Transactional
     @Override
     public ToUsuariosVo agregar(ToUsuariosVo toUsuariosVo) {
-        ToUsuarios usuario = toUsuariosDao.agregar(new ToUsuarios.Builder()
+        Usuarios usuario = usuariosDao.agregar(new Usuarios.Builder()
                 .ccrUsuario(toUsuariosVo.getCcrUsuario())
                 .codUsuarioCrea(toUsuariosVo.getCodUsuarioCrea())
                 .codUsuarioMod(toUsuariosVo.getCodUsuarioMod())
@@ -104,9 +104,9 @@ public class ToUsuarioServiceImpl implements ToUsuariosService {
     @Override
     @Transactional
     public ToUsuariosVo eliminar(Long ccrUsuario) {
-        Optional<ToUsuarios> usuario = toUsuariosDao.obtenerUsuario(ccrUsuario);
+        Optional<Usuarios> usuario = usuariosDao.obtenerUsuario(ccrUsuario);
         if (usuario.isPresent()) {
-            ToUsuarios usuario1 = toUsuariosDao.eliminar(usuario.get());
+            Usuarios usuario1 = usuariosDao.eliminar(usuario.get());
             return new ToUsuariosVo.Builder()
                     .ccrUsuario(usuario.get().getCcrUsuario())
                     .codUsuarioCrea(usuario.get().getCodUsuarioCrea())
@@ -129,7 +129,7 @@ public class ToUsuarioServiceImpl implements ToUsuariosService {
     @Override
     @Transactional
     public ToUsuariosVo editar(Long ccrUsuario, ToUsuariosVo toUsuariosVo) {
-        ToUsuarios usuario =  toUsuariosDao.editar(new ToUsuarios.Builder()
+        Usuarios usuario =  usuariosDao.editar(new Usuarios.Builder()
                 .ccrUsuario(toUsuariosVo.getCcrUsuario())
                 .codUsuarioCrea(toUsuariosVo.getCodUsuarioCrea())
                 .codUsuarioMod(toUsuariosVo.getCodUsuarioMod())

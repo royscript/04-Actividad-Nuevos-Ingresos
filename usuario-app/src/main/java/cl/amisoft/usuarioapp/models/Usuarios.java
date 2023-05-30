@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "TO_USUARIOS", schema = "Actividad")
-public class ToUsuarios {
+public class Usuarios {
     @Id
     @Column(name = "CRR_USUARIO")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,9 +139,9 @@ public class ToUsuarios {
         this.rutDiv = rutDiv;
     }
 
-    public ToUsuarios() {
+    public Usuarios() {
     }
-    public ToUsuarios(Builder builder){
+    public Usuarios(Builder builder){
         this.ccrUsuario = builder.ccrUsuario;
         this.codUsuarioCrea = builder.codUsuarioCrea;
         this.codUsuarioMod = builder.codUsuarioMod;
@@ -236,8 +236,8 @@ public class ToUsuarios {
             this.rutDiv = rutDiv;
             return this;
         }
-        public ToUsuarios build(){
-            return new ToUsuarios(this);
+        public Usuarios build(){
+            return new Usuarios(this);
         }
     }
 }
