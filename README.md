@@ -1,5 +1,9 @@
 ﻿# 04-Actividad-Nuevos-Ingresos
-Esquema de bd
+ <br/>
+ Video de explicación
+
+https://drive.google.com/file/d/1lRh4s17hwTQ_tlaC_VUxr0ma1G4NTshg/view?usp=sharing
+<br/>Esquema de bd
 
 ```sql
 CREATE DATABASE actividad;
